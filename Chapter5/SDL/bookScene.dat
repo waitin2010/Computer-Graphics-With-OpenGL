@@ -1,0 +1,31 @@
+! – myScene1.dat
+light 20 60 30 .7 .7 .7 ! put a light at (20,60,30),color:(.7, .7, .7)
+ambient .7 .7 .7 ! set material properties for all of the objects
+diffuse .6 .6 .6
+specular 1 1 1
+exponent 50
+def jackPart{ push scale .2 .2 1 sphere pop
+push translate 0 0 1.2 scale .2 .2 .2 sphere pop
+push translate 0 0 -1.2 scale .2 .2 .2 sphere pop
+}def jack{ push use jackPart
+rotate 90 0 1 0 use jackPart
+rotate 90 1 0 0 use jackPart pop
+}
+def wall{push translate 1 .01 1 scale 1 .02 1 cube pop}
+def leg {push translate 0 .15 0 scale .01 .15 .01 cube pop}
+def table{
+push translate 0 .3 0 scale .3 .01 .3 cube pop !table top
+push
+translate .275 0 .275 use leg
+translate 0 0 -.55 use leg
+translate -.55 0 .55 use leg
+translate 0 0 -.55 use leg pop
+}
+!now add the objects themselves
+push translate .4 .4 .6 rotate 45 0 0 1 scale .08 .08 .08 use jack pop
+push translate .25 .42 .35 scale .1 .1 .1 sphere pop
+push translate .6 .38 .5 rotate 30 0 1 0 scale .08 .08 .08 teapot pop
+push translate 0.4 0 0.4 use table pop
+use wall
+push rotate 90 0 0 1 use wall pop
+push rotate -90 1 0 0 use wall pop
